@@ -1,4 +1,5 @@
 import assert from 'node:assert'
+import core from '@actions/core'
 import { Config } from './config'
 import { EthereumClient } from './periphery/ethereum'
 import { deployContract } from './periphery/forge'
@@ -36,6 +37,8 @@ export async function forkAndExecuteSpell(spellName: string, config: Config): Pr
     from: config.deployer,
     cwd: config.spellsRepoPath,
   })
+
+  core.info(`Deploy address: ${spellAddress}`)
 
   await executeSpell({ spellAddress, network: chain, ethereumClient })
 
