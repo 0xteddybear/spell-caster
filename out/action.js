@@ -50911,10 +50911,10 @@ async function deployContract2({
   from,
   cwd: cwd2
 }) {
-  const result = await $`forge create --rpc-url ${rpc} --from ${from} ${contractName} --unlocked --json`.cwd(cwd2).json();
-  import_core.default.info(`Deployed spell ${contractName} to address ${result.deployedTo}`);
-  import_core.default.info(`Deploy result: ${JSON.stringify(result)}`);
-  return result.deployedTo;
+  const result = await $`forge create --rpc-url ${rpc} --from ${from} ${contractName} --unlocked`.cwd(cwd2).text();
+  import_core.default.info(result);
+  import_core.default.info(rpc);
+  return "0x0000000000000000000000000000000000000000";
 }
 
 // src/periphery/spark-app/index.ts
