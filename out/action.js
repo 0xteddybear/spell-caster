@@ -35200,7 +35200,7 @@ var require_brace_expansion = __commonJS((exports, module) => {
 });
 
 // src/bin/action.ts
-var import_core3 = __toESM(require_core(), 1);
+var import_core4 = __toESM(require_core(), 1);
 var import_github = __toESM(require_github(), 1);
 var import_comment = __toESM(require_dist2(), 1);
 import assert5 from "node:assert";
@@ -35436,6 +35436,7 @@ function toAlignment(value) {
 }
 
 // src/index.ts
+var import_core2 = __toESM(require_core(), 1);
 import assert3 from "node:assert";
 
 // node_modules/viem/_esm/utils/getAction.js
@@ -50912,7 +50913,7 @@ async function deployContract2({
 }) {
   const result = await $`forge create --rpc-url ${rpc} --from ${from} ${contractName} --unlocked --json`.cwd(cwd2).json();
   import_core.default.info(`Deployed spell ${contractName} to address ${result.deployedTo}`);
-  import_core.default.debug(`Deploy result: ${result}`);
+  import_core.default.info(`Deploy result: ${result}`);
   return result.deployedTo;
 }
 
@@ -51075,6 +51076,7 @@ async function forkAndExecuteSpell(spellName, config) {
     from: config.deployer,
     cwd: config.spellsRepoPath
   });
+  import_core2.default.info(`Deploy address: ${spellAddress}`);
   await executeSpell({ spellAddress, network: chain2, ethereumClient });
   return {
     spellName,
@@ -51116,10 +51118,10 @@ function getConfig(getEnvVariable, spellsRepoPath) {
 }
 
 // src/config/environments/action.ts
-var import_core2 = __toESM(require_core(), 1);
+var import_core3 = __toESM(require_core(), 1);
 import assert4 from "node:assert";
 function getRequiredGithubInput(key) {
-  const value = import_core2.default.getInput(key);
+  const value = import_core3.default.getInput(key);
   assert4(value, `Missing required github input: ${key}`);
   return value;
 }
@@ -56434,13 +56436,13 @@ function getFilenameWithoutExtension(fullPath) {
 async function main() {
   const config = getConfig(getRequiredGithubInput, process.cwd());
   const allPendingSpellNames = findPendingSpells(process.cwd());
-  import_core3.default.info(`Pending spells: ${allPendingSpellNames.join(", ")}`);
+  import_core4.default.info(`Pending spells: ${allPendingSpellNames.join(", ")}`);
   const results = await Promise.all(allPendingSpellNames.map((spellName) => forkAndExecuteSpell(spellName, config)));
   await postGithubComment(results);
-  import_core3.default.info(`Results: ${JSON.stringify(results)}`);
+  import_core4.default.info(`Results: ${JSON.stringify(results)}`);
 }
 await main().catch((error) => {
-  import_core3.default.setFailed(error);
+  import_core4.default.setFailed(error);
 });
 var uniqueAppId = "spark-spells-action";
 async function postGithubComment(results) {
@@ -56459,7 +56461,7 @@ async function postGithubComment(results) {
 
   <sub>Deployed from ${sha} on ${now}</sub>
   `;
-  await import_comment.createCommentOrUpdate({ githubToken: import_core3.default.getInput("github-token"), message, uniqueAppId });
+  await import_comment.createCommentOrUpdate({ githubToken: import_core4.default.getInput("github-token"), message, uniqueAppId });
 }
 function getPrSha() {
   const context = import_github.default.context;
