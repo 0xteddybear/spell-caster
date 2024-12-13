@@ -50913,7 +50913,7 @@ async function deployContract2({
 }) {
   const result = await $`forge create --rpc-url ${rpc} --from ${from} ${contractName} --unlocked --json`.cwd(cwd2).json();
   import_core.default.info(`Deployed spell ${contractName} to address ${result.deployedTo}`);
-  import_core.default.info(`Deploy result: ${result}`);
+  import_core.default.info(`Deploy result: ${JSON.stringify(result)}`);
   return result.deployedTo;
 }
 
