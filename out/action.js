@@ -40403,6 +40403,9 @@ class EthereumClient {
     });
   }
 }
+// src/periphery/forge/index.ts
+var import_core = __toESM(require_core(), 1);
+
 // node_modules/@deno/shim-deno/dist/index.mjs
 var import_which = __toESM(require_lib4(), 1);
 var import_which2 = __toESM(require_lib4(), 1);
@@ -50901,7 +50904,6 @@ var $ = build$FromState(buildInitial$State({
 }));
 
 // src/periphery/forge/index.ts
-var import_core = __toESM(require_core(), 1);
 async function deployContract2({
   contractName,
   rpc,
